@@ -34,3 +34,12 @@ y_fin = classifier.predict(X_test)
 print(confusion_matrix(y_test,y_fin))  
 print(classification_report(y_test,y_fin))  
 print(accuracy_score(y_test, y_fin))
+
+import json
+# Input is a JSON file with an array of structures which contain text: [{'id': '<string>', 'text': '<string>'}]
+# Output is a JSON file with the recognized intents in a given texts: [{'id': '<string>', 'intents': [{'text': '<string, extracted intent text>', 'startsAt': <int, the char # when the intent starts>}]}]
+with open('data.json') as data_file:    
+    data = json.load(data_file)
+    for text in data['  ']:
+        X_new = tfid.transform(sent_tokenise(text["text"])).toarray() 
+        y_pred = classifier.predict(X_new)
